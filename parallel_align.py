@@ -25,11 +25,13 @@ landmarks_detector = LandmarksDetector(landmarks_model_path)
 def extract(img_name):
     try:
       raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
+      n = 0
       for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
           face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], i)
           aligned_face_path = os.path.join(ALIGNED_IMAGES_DIR, face_img_name)
           image_align(raw_img_path, aligned_face_path, face_landmarks)
-      print("processed "+img_name)
+          n+=1
+      print("processed "+img_name+ " produced "+str(n)+ " aligned images from it")
     except:
       print(img_name + "failed, too bad")
 
