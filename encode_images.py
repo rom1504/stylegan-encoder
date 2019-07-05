@@ -36,8 +36,12 @@ def main():
     parser.add_argument('--randomize_noise', default=False, help='Add noise to dlatents during optimization', type=bool)
     args, other_args = parser.parse_known_args()
 
-    ref_images = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
-    ref_images = list(filter(os.path.isfile, ref_images))
+    ref_image = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
+    ref_image = list(filter(os.path.isfile, ref_image))
+
+    already_processed = set(map(lambda x: x.split(".")[0], os.listdir(args.generated_images_dir)))
+
+    ref_images = list(filter(lambda x: x.split("/")[-1].split(".")[0] not in already_processed, ref_image))
 
     if len(ref_images) == 0:
         raise Exception('%s is empty' % args.src_dir)
