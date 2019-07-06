@@ -32,8 +32,9 @@ def extract(img_name):
           image_align(raw_img_path, aligned_face_path, face_landmarks)
           n+=1
       print("processed "+img_name+ " produced "+str(n)+ " aligned images from it")
-    except:
+    except Exception as e:
       print(img_name + "failed, too bad")
+      print(e)
 
 
 if __name__ == '__main__':
@@ -49,4 +50,4 @@ if __name__ == '__main__':
     
     # specify number of processes
     p = Pool(n_processed)
-    print(p.map(extract, to_process_images))
+    p.map(extract, to_process_images)
