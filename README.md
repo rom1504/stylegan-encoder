@@ -8,6 +8,12 @@
 
 *The generated image is not a real person; a latent representation of two Game of Thrones characters was found by using perceptual loss trick. Then these representations were combined using the style mixing technique and transformed back into an image.*
 
+## Installation
+
+`conda env create -f environment.yml`
+
+## Explanation
+
 Short explanation of encoding approach:
 0) Original pre-trained StyleGAN generator is used for generating images
 1) Pre-trained VGG16 network is used for transforming a reference image and generated image into high-level features space
